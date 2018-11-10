@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-if [[ $# -ne 6 ]]
+if [[ $# -ne 2 ]]
     then
         echo "Usage ${0} sdCard path-to-ssh-public-key"
         echo "e.g. ${0} /dev/mmcblk0 ~alice/.ssh/id_rsa.pub"
