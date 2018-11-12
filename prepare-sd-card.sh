@@ -48,7 +48,7 @@ cat > "${MOUNT_POINT}/raspberrypi-ua-netinst/config/files/root/lib/systemd/syste
 Description=Gitea (Git with a cup of tea)
 After=syslog.target
 After=network.target
-#After=mysqld.service
+After=mysqld.service
 #After=postgresql.service
 #After=memcached.service
 #After=redis.service
@@ -77,6 +77,11 @@ Environment=USER=git HOME=/home/git GITEA_WORK_DIR=/var/lib/gitea
 [Install]
 WantedBy=multi-user.target
 EOM
+
+cat > "${MOUNT_POINT}/raspberrypi-ua-netinst/config/files/systemd.list" <<- EOM
+root:root 444 /lib/systemd/system/gitea.service
+EOM
+
 
 # TODO verify GPG signature
 # TODO set up service
