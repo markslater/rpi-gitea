@@ -23,7 +23,7 @@ MOUNT_POINT=`mktemp --directory`
 mount -t vfat /dev/mmcblk0p1 "${MOUNT_POINT}"
 
 cat > "${MOUNT_POINT}/raspberrypi-ua-netinst/config/installer-config.txt" <<- EOM
-packages="git,mysql-server"
+packages="git,postgresql"
 
 root_ssh_pubkey=""
 root_ssh_pwlogin=0
@@ -48,8 +48,8 @@ cat > "${MOUNT_POINT}/raspberrypi-ua-netinst/config/files/root/lib/systemd/syste
 Description=Gitea (Git with a cup of tea)
 After=syslog.target
 After=network.target
-After=mysqld.service
-#After=postgresql.service
+#After=mysqld.service
+After=postgresql.service
 #After=memcached.service
 #After=redis.service
 
