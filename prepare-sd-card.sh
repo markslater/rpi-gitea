@@ -23,7 +23,7 @@ MOUNT_POINT=`mktemp --directory`
 mount -t vfat /dev/mmcblk0p1 "${MOUNT_POINT}"
 
 cat > "${MOUNT_POINT}/raspberrypi-ua-netinst/config/installer-config.txt" <<- EOM
-packages="git,postgresql"
+packages="git"
 
 root_ssh_pubkey=""
 root_ssh_pwlogin=0
@@ -110,7 +110,7 @@ chroot /rootfs chmod +x /usr/local/bin/gitea
 
 mkdir -p /etc/systemd/system/
 ln -s /lib/systemd/system/gitea.service /etc/systemd/system/gitea.service
-chroot /rootfs systemctl enable gitea
+# chroot /rootfs systemctl enable gitea
 EOM
 
 umount "${MOUNT_POINT}"
